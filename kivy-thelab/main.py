@@ -93,6 +93,14 @@ class CanvasExample1(Widget):
 class CanvasExample2(Widget):
     pass
 
+class CanvasExample3(Widget):
+    pass
+
+#class CanvasExample4(Widget):
+ #   def __init__(self, **kwargs):
+  #          super().__init__(**kwargs)
+   #         with self.canvas:
+
 
 
 TheLabApp().run()
