@@ -1,7 +1,7 @@
 from kivy.app import App
-from kivy.graphics import Line, Color, Rectangle
+from kivy.graphics import Line, Color, Rectangle, Ellipse
 from kivy.metrics import dp
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty, Clock
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
@@ -107,6 +107,21 @@ class CanvasExample4(Widget):
                 Line(circle=(400, 200, 80), width=2)
                 Line(rectangle=(700, 500, 150, 100), width=5)
                 Rectangle(pos=(700, 200), size=(150, 100))
+
+class CanvasExample5(Widget):
+    def __init__(self, **kwargs):
+            super().__init__(**kwargs)
+            self.ball_size = dp(50)
+            with self.canvas:
+                self.ball = Ellipse(pos=self.center, size=(self.ball_size, self.ball_size))
+            Clock.schedule_interval(self.update, 1/60)
+    def on_size(self, *args):
+        # print("on size: " + str(self.width,) + ", " + str(self.height))
+        self.ball.pos = (self.center_x-self.ball_size/2, self.center_y-self.ball_size/2)
+    def update(self, dt):
+        # print("Update")
+        x, y = self.ball.pos
+        self.ball.pos = (x+10, y)
 
 
 
